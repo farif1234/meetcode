@@ -1,0 +1,35 @@
+{
+    "name": "MeetCode",
+    "version": "1.0.0",
+    "description": "Collaboratively work on Leetcode questions",
+    "manifest_version": 3,
+    "author": "Faihaan Arif",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "MeetCode"
+    },
+    "background": {
+        "service_worker": "background.js",
+        "persistence": true
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/problems/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "script.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
