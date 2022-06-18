@@ -23,6 +23,7 @@ window.onload = (event) => {
         console.log(event.data.source)
         if (event.data.source == 'meetcode') {
             console.log("found event in post!", event.data)
+            chrome.runtime.sendMessage({ data: event.data })
         }
         // chrome.runtime.sendMessage({
         //     data: "test data"
@@ -30,6 +31,15 @@ window.onload = (event) => {
         //     console.dir(response);
         // });
     });
+
+    chrome.runtime.onMessage.addListener(
+        function (request, sender, sendResponse) {
+            console.log('received data from background')
+            console.log(request)
+            console.log(sender)
+            socket.send(request)
+        }
+    )
 
     var s = document.createElement('script');
     s.src = chrome.runtime.getURL('script.js');

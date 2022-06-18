@@ -10,7 +10,7 @@
     },
     "background": {
         "service_worker": "background.js",
-        "persistence": true
+        "type": "module"
     },
     "content_scripts": [
         {
@@ -31,5 +31,9 @@
                 "<all_urls>"
             ]
         }
+    ],
+    "permissions": [
+        "storage",
+        "activeTab"
     ]
 }

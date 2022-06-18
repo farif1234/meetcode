@@ -8,16 +8,18 @@ const io = require("socket.io")(http, {
     }
 });
 
-const port = 3000
+const port = process.env.port || 3000
 
 http.listen(port, () => log(`server listening on port: ${port}`))
 
 io.on('connection', (socket) => {
+    log(socket.id)
     log('connected')
     socket.on('message', (evt) => {
         log(evt)
         socket.broadcast.emit('message', evt)
     })
+
 })
 
 io.on('disconnect', (evt) => {
