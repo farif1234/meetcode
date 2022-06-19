@@ -1,5 +1,6 @@
 import { io } from "/node_modules/socket.io-client/dist/socket.io.esm.min.js";
-var socket = io('http://localhost:3000', { transports: ['websocket'] })
+var socket = io('https://polar-badlands-20374.herokuapp.com/', { transports: ['websocket'] })
+// var socket = io('http://localhost:3000', { transports: ['websocket'] })
 console.log(socket)
 
 // key = 'userID'
