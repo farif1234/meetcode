@@ -15,9 +15,13 @@
             placeholder="Type Your Text..."></textarea>
     </div> -->
     <h2>MeetCode</h2>
-    <p>User ID: <span id="userID">Not Connected</span></p>
-    <button id="getID">Get user ID</button>
-    <button id="button">Create room</button>
+    <p>Room ID: <span id="roomID">Not Connected</span></p>
+    <div id="beforeConnect">
+        <button id="newRoom">New Room</button>
+        <input id="roomInput" type="text">
+        <button id="joinRoom">Join Room</button>
+    </div>
+    <button style="display: none;" id="disconnect">Disconnect</button>
 </body>
 <!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script> -->
 <script src="./client.js"></script>

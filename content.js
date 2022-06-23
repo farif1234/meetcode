@@ -37,7 +37,11 @@ window.onload = (event) => {
             console.log('received data from background')
             console.log(request)
             console.log(sender)
-            socket.send(request)
+            // socket.send(request)
+            window.postMessage({
+                'source': 'content',
+                'data': request.data
+            }, "*");
         }
     )
 
