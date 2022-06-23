@@ -13,12 +13,26 @@ const port = process.env.PORT || 3000
 http.listen(port, () => log(`server listening on port: ${port}`))
 
 io.on('connection', (socket) => {
-    log(socket.id)
-    log('connected')
+    log(socket.id + ' is connected')
+
+    socket.on('room', function (room) {
+        log(socket.id + " joined " + room)
+        socket.join(room);
+        console.log(socket.rooms);
+        console.log(Array.from(socket.rooms)[1]);
+        console.log(io.sockets.adapter.rooms);
+    });
+
     socket.on('message', (evt) => {
         log(evt)
-        socket.broadcast.emit('message', evt)
-    })
+        var roomID = Array.from(socket.rooms)[1];
+        socket.to(roomID).emit('message', evt);
+        // socket.broadcast.emit('message', evt)
+    });
+
+    socket.on('disconnect', (evt) => {
+        log(socket.id + ' left')
+    });
 
 })
 
