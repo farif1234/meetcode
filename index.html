@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MeetCode</title>
+    <link rel="stylesheet" href="src/buttons.css">
+    <link rel="stylesheet" href="src/style.css">
 </head>
 
 <body>
-    <!-- <h3>Realtime Editor/Collaboration</h3>
-    <div>
-        <textarea rows="30" cols="50" id="editor" style="background-color:dimgrey;color:white"
-            placeholder="Type Your Text..."></textarea>
-    </div> -->
     <h2>MeetCode</h2>
     <p>Room ID: <span id="roomID">Not Connected</span></p>
     <div id="beforeConnect">
-        <button id="newRoom">New Room</button>
-        <input id="roomInput" type="text">
-        <button id="joinRoom">Join Room</button>
+        <a id="newRoom" class="button button-small button-3d button-action button-pill">New Room</a>
+        <hr style="width:50%;">
+        <div id="joinRoomDiv">
+            <input id="roomInput" type="text" maxlength="6" placeholder="Room #">
+            <a id="joinRoom" class="button button-small button-3d button-royal button-rounded">Join Room</a>
+        </div>
     </div>
-    <button style="display: none;" id="disconnect">Disconnect</button>
+    <a style="display: none;" id="disconnect" class="button button-small button-glow button-rounded button-caution">Disconnect</a>
 </body>
-<!-- <script src="./node_modules/socket.io-client/dist/socket.io.js"></script> -->
-<script src="./client.js"></script>
+<script src="src/client.js"></script>
+
 
 </html>

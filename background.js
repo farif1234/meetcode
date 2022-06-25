@@ -1,4 +1,4 @@
-import { io } from "/node_modules/socket.io-client/dist/socket.io.esm.min.js";
+import { io } from "/server/node_modules/socket.io-client/dist/socket.io.esm.min.js";
 
 var socket
 
@@ -20,23 +20,9 @@ chrome.runtime.onMessage.addListener((message, sender, reply) => {
 
 async function connect(roomID) {
 
-    // var socket = await io('https://polar-badlands-20374.herokuapp.com/', { transports: ['websocket'] })
+    // socket = await io('https://polar-badlands-20374.herokuapp.com/', { transports: ['websocket'] })
     socket = await io('http://localhost:3000', { transports: ['websocket'] })
     console.log(socket)
-
-    // setTimeout(storeData, 2000)
-
-    // function storeData() {
-    //     const socket_id = String(socket.id)
-    //     console.log(socket_id)
-    //     // set in storage, access from client
-    //     chrome.storage.local.set({ key: socket_id }, () => {
-    //         chrome.storage.local.get("key", (result) => {
-    //             console.log(result.key)
-    //         })
-    //         console.log(socket.id + ' added to storage')
-    //     })
-    // }
 
     socket.on('connect', function () {
         socket.emit("room", roomID)
@@ -50,19 +36,20 @@ async function connect(roomID) {
         let tabs = await chrome.tabs.query(queryOptions);
         // console.log(tabs)
         chrome.tabs.sendMessage(tabs[0].id, { data: val });
-        // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        //     chrome.tabs.sendMessage(tabs[0].id, { data: val });
     });
-    // })
+
+    socket.on("disconnect", (reason) => {
+        if (reason === "io server disconnect") {
+            // the disconnection was initiated by the server, reconnect manually
+            socket.connect();
+        }
+        // else the socket will automatically try to reconnect
+    });
+
 
     // receive from content, emit to server
     chrome.runtime.onMessage.addListener(
         function (request, sender, sendResponse) {
-            // console.log(sender.tab ?
-            //             "from a content script:" + sender.tab.url :
-            //             "from the extension");
-            // if (request.greeting === "hello")
-            //   sendResponse({farewell: "goodbye"});
             console.log(request)
             console.log(sender)
             socket.send(request.data.data)

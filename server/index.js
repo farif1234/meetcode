@@ -15,6 +15,7 @@ http.listen(port, () => log(`server listening on port: ${port}`))
 io.on('connection', (socket) => {
     log(socket.id + ' is connected')
 
+    // join room
     socket.on('room', function (room) {
         log(socket.id + " joined " + room)
         socket.join(room);
@@ -23,6 +24,7 @@ io.on('connection', (socket) => {
         console.log(io.sockets.adapter.rooms);
     });
 
+    // emit message to room
     socket.on('message', (evt) => {
         log(evt)
         var roomID = Array.from(socket.rooms)[1];
