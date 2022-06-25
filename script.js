@@ -17,13 +17,14 @@ function editorValue() {
     editor.on("cursorActivity", (evt) => {
         pos = editor.getCursor()
         lineHandle = editor.getLineHandle(pos.line)
+        console.log(pos.line, pos.ch)
     })
 
     // on any edit, send editor value to content
     editor.on("keyup", (evt) => {
         console.log(editor.getValue())
-        pos = editor.getCursor()
-        lineHandle = editor.getLineHandle(pos.line)
+        // pos = editor.getCursor()
+        // lineHandle = editor.getLineHandle(pos.line)
 
         window.postMessage({
             'source': 'meetcode',

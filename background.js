@@ -5,7 +5,7 @@ var socket
 // from client
 chrome.runtime.onMessage.addListener((message, sender, reply) => {
     console.log(message, sender)
-    if (message.source && message.room == 'disconnect') {
+    if (message.room == 'disconnect') {
         socket.disconnect()
     }
     else if (message.source == 'client') {
@@ -20,13 +20,16 @@ chrome.runtime.onMessage.addListener((message, sender, reply) => {
 
 async function connect(roomID) {
 
-    // socket = await io('https://polar-badlands-20374.herokuapp.com/', { transports: ['websocket'] })
-    socket = await io('http://localhost:3000', { transports: ['websocket'] })
+    socket = await io('https://polar-badlands-20374.herokuapp.com/', { transports: ['websocket'] })
+    // socket = await io('http://localhost:3000', { transports: ['websocket'] })
     console.log(socket)
 
     socket.on('connect', function () {
         socket.emit("room", roomID)
         console.log("connected to " + roomID);
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.reload(tabs[0].id);
+        });
     });
 
     socket.on('message', async (val) => {
@@ -44,7 +47,9 @@ async function connect(roomID) {
             socket.connect();
         }
         // else the socket will automatically try to reconnect
+        // chrome.runtime.reload()
     });
+
 
 
     // receive from content, emit to server
