@@ -21,7 +21,9 @@ The app works by inserting a script in order to call CodeForce methods on the ed
 2. CD into meetcode/server
 3. Run `npm install`
 4. In Chrome extension menu, click "Load Unpacked" and upload MeetCode folder (make sure Developer mode is on)
+
 ![load-unpacked](https://user-images.githubusercontent.com/88285952/200090947-547f6829-f0bb-4e89-aadf-35152129c3b2.png)
+
 5. Extension should now be available to use
 
 
