@@ -10,9 +10,12 @@ The app works by inserting a script in order to call CodeForce methods on the ed
 
 ## Demo
 
-![mc_mac_3](https://user-images.githubusercontent.com/88285952/200089175-2800561f-83a4-4dd9-92b0-9fb3f61d15b8.gif)
+<!-- ![mc_mac_3](https://user-images.githubusercontent.com/88285952/200089175-2800561f-83a4-4dd9-92b0-9fb3f61d15b8.gif)
 
-![meetcode_win3_30](https://user-images.githubusercontent.com/88285952/200089326-ff0d0dc0-42c6-4b3d-bd9b-cf9c4d8b4eb1.gif)
+![meetcode_win3_30](https://user-images.githubusercontent.com/88285952/200089326-ff0d0dc0-42c6-4b3d-bd9b-cf9c4d8b4eb1.gif) -->
+
+![meetcode-demo](https://user-images.githubusercontent.com/88285952/200093073-ebdd7263-a178-468f-94fe-fa67a6af9a67.gif)
+
 
 
 ## Running locally
